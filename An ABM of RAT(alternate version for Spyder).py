@@ -314,27 +314,123 @@ def advance_city_v2(city, previous_city):
     return new_city, previous_city
 
 
-#%% Test 1
-
+#%% MODEL 1 - 20,000 PEOPLE, 1800 OFFENDERS, 30 CAPABLE GUARDIANS
 # creating city, initial previous_city and robbery_record
-city = make_city_v2(200, 200, 5000, 50, 5)
+city = make_city_v2(200, 200, 20000, 1800, 30)
 previous_city = city.copy()
 robbery_record = np.zeros_like(city)
 
-fig = plt.figure(figsize=(10,10))
+fig = plt.figure(figsize=(20,20))
 
 #plotting the original city
 cityplot(city)
 
-for i in range(50):
+for i in range(100):
+    
     city, previous_city = advance_city_v2(city, previous_city)
     
     cityplot(city)
-    time.sleep(0.1)
+    time.sleep(0.01)  # 
     clear_output(wait=True)
     display(fig)
-    fig.clear()
+    plt.show()
+    plt.clf()
+    
     
 plt.close()
 
 heatmapplot(robbery_record)
+
+robbery_record.sum()
+# sum amount of robberies == 70728
+
+#%% MODEL 2 - 20,000 PEOPLE, 1800 OFFENDERS, 60 CAPABLE GUARDIANS
+city = make_city_v2(200, 200, 20000, 1800, 60)
+previous_city = city.copy()
+robbery_record = np.zeros_like(city)
+
+fig = plt.figure(figsize=(20,20))
+
+#plotting the original city
+cityplot(city)
+
+for i in range(100):
+    
+    city, previous_city = advance_city_v2(city, previous_city)
+    
+    cityplot(city)
+    time.sleep(0.01)  # 
+    clear_output(wait=True)
+    display(fig)
+    plt.show()
+    plt.clf()
+    
+    
+plt.close()
+
+heatmapplot(robbery_record)
+
+robbery_record.sum()
+# sum amount of robberies == 60198
+
+
+#%% MODEL 3 - (BIRKS ET AL., 2014) - SMALLER CITY 
+city = make_city_v2(100, 100, 2500, 225, 5)
+previous_city = city.copy()
+robbery_record = np.zeros_like(city)
+
+fig = plt.figure(figsize=(20,20))
+
+#plotting the original city
+cityplot(city)
+
+for i in range(100):
+    
+    city, previous_city = advance_city_v2(city, previous_city)
+    
+    cityplot(city)
+    time.sleep(0.01)  # 
+    clear_output(wait=True)
+    display(fig)
+    plt.show()
+    plt.clf()
+    
+    
+plt.close()
+
+heatmapplot(robbery_record)
+
+robbery_record.sum()
+# sum amount of robberies == 4315
+
+
+
+#%% MODEL 4 - (BIRKS ET AL., 2014) - SMALLER CITY - HIGH GUARDIAN PRESENCE
+city = make_city_v2(100, 100, 2500, 225, 15)
+previous_city = city.copy()
+robbery_record = np.zeros_like(city)
+
+fig = plt.figure(figsize=(20,20))
+
+#plotting the original city
+cityplot(city)
+
+for i in range(100):
+    
+    city, previous_city = advance_city_v2(city, previous_city)
+    
+    cityplot(city)
+    time.sleep(0.01)  # 
+    clear_output(wait=True)
+    display(fig)
+    plt.show()
+    plt.clf()
+    
+    
+plt.close()
+
+heatmapplot(robbery_record)
+
+
+robbery_record.sum()
+# sum amount of robberies == 4680
